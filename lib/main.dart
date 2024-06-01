@@ -34,6 +34,36 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List images = [
+    "assets/tshirt.jpeg",
+    "assets/1.jpg",
+    "assets/2.jpg",
+    "assets/3.jpg",
+    "assets/4.jpg",
+    "assets/5.jpg",
+    "assets/6.jpg",
+    "assets/7.jpg",
+  ];
+  List names = [
+    "Blue T shirt",
+    "Black T shirt",
+    "Green T shirt",
+    "Grey T shirt",
+    "Orange T shirt",
+    "Purple T shirt",
+    "White Grey T shirt",
+    "White T shirt",
+  ];
+  List price = [
+    "Rs. 120",
+    "Rs. 130",
+    "Rs. 140",
+    "Rs. 150",
+    "Rs. 130",
+    "Rs. 200",
+    "Rs. 210",
+    "Rs. 220",
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,56 +103,57 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSpacing: 3,
           childAspectRatio: 0.6,
         ),
-        itemCount: 20,
+        itemCount: images.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        width: 2,
-                        color: Color(0xffA91D3A).withOpacity(.1),
+                        width: 1,
+                        color: const Color(0xffA91D3A),
                       ),
                     ),
+
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 3,
-                                      offset: const Offset(0, 3),
-                                    ),
-                                  ],
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Icon(
-                                  Icons.favorite_border,
-                                  color: Color(0xffA91D3A),
-                                ),
-                              )
-                            ],
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 8),
+                            child: Container(
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 3,
+                                    offset: const Offset(0, 3),
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                              child: myFavIcon(),
+                            ),
                           ),
                         ),
                         Expanded(
                           child: Image.asset(
-                            'assets/tshirt.jpeg',
+                            // 'assets/tshirt.jpeg',
+                            images[index],
+                            // height: 200,
+                            // width: 200,
                             // fit: BoxFit.cover,
                           ),
                         ),
@@ -134,7 +165,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "T-Shirt",
+                                    // "T-Shirt",
+                                    names[index],
                                     style: TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold,
@@ -147,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "\$ 32",
+                                    price[index],
                                     style: TextStyle(
                                       color: Color(0xffA91D3A),
                                       fontSize: 17,
@@ -162,18 +194,25 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ],
                     ),
+
+                    // child:
+                    //     myFavIcon(images: images, names: names, price: price),
                   ),
                 ),
                 SizedBox(height: 8),
-                GestureDetector(onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CartPage()),
-                  );
-                },
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CartPage()),
+                      );
+                    },
                     child: Container(
-                      height: 50,
-                      width: double.infinity,
+                      height: 45,
+
+                      // width: double.infinity,
+                      width: 150,
                       decoration: BoxDecoration(
                         color: Color(0xffA91D3A),
                         borderRadius: BorderRadius.circular(8),
@@ -195,5 +234,33 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
     );
+  }
+}
+
+class myFavIcon extends StatefulWidget {
+  const myFavIcon({
+    tooltip = "Navigator",
+    super.key,
+  });
+
+  @override
+  State<myFavIcon> createState() => _myFavIconState();
+}
+
+bool isFav = false;
+
+class _myFavIconState extends State<myFavIcon> {
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: () {
+          setState(() {
+            isFav = !isFav;
+          });
+        },
+        child: Icon(
+          Icons.favorite,
+          // color: isFav ? Color(0xffA91D3A) : Color.fromARGB(133, 240, 239, 239),
+          color: isFav ? Colors.pink : Colors.grey,
+        ));
   }
 }

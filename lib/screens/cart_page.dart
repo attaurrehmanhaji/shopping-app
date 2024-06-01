@@ -102,7 +102,7 @@ class CartPage extends StatelessWidget {
                           height: 50,
                           width: 50,
                           child: Center(
-                              child: Text("Size",
+                              child: Text("32",
                                   style: TextStyle(
                                       color: Color(0xffA91D3A), fontSize: 18))),
                           decoration: BoxDecoration(
@@ -110,6 +110,15 @@ class CartPage extends StatelessWidget {
                               width: .9,
                               color: Color(0xffA91D3A),
                             ),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 3,
+                                blurRadius: 4,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -124,7 +133,7 @@ class CartPage extends StatelessWidget {
                           height: 50,
                           width: 50,
                           child: Center(
-                              child: Text("Size",
+                              child: Text("33",
                                   style: TextStyle(
                                       color: Color(0xffA91D3A), fontSize: 18))),
                           decoration: BoxDecoration(
@@ -132,6 +141,15 @@ class CartPage extends StatelessWidget {
                               width: .9,
                               color: Color(0xffA91D3A),
                             ),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 3,
+                                blurRadius: 4,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -146,7 +164,7 @@ class CartPage extends StatelessWidget {
                           height: 50,
                           width: 50,
                           child: Center(
-                              child: Text("Size",
+                              child: Text("34",
                                   style: TextStyle(
                                       color: Color(0xffA91D3A), fontSize: 18))),
                           decoration: BoxDecoration(
@@ -177,7 +195,7 @@ class CartPage extends StatelessWidget {
                           height: 50,
                           width: 50,
                           child: Center(
-                              child: Text("Size",
+                              child: Text("35",
                                   style: TextStyle(
                                       color: Color(0xffA91D3A), fontSize: 18))),
                           decoration: BoxDecoration(
@@ -185,6 +203,15 @@ class CartPage extends StatelessWidget {
                               width: .9,
                               color: Color(0xffA91D3A),
                             ),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 3,
+                                blurRadius: 4,
+                                offset: const Offset(0, 3),
+                              ),
+                            ],
                             borderRadius: BorderRadius.circular(50),
                           ),
                         ),
@@ -204,8 +231,10 @@ class CartPage extends StatelessWidget {
                     );
                   },
                   child: Container(
+                    margin: EdgeInsets.all(20),
                     height: 50,
-                    width: 300,
+                    // width: 300,
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       color: Color(0xffA91D3A),
                       borderRadius: BorderRadius.circular(8),

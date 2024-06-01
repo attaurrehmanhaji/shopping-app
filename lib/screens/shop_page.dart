@@ -3,7 +3,7 @@ import 'package:ui7_shopping_app/main.dart';
 
 class ShopPage extends StatelessWidget {
   const ShopPage({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +30,7 @@ class ShopPage extends StatelessWidget {
                 child: Container(
                   height: 50,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0xffA91D3A),
+                  decoration: BoxDecoration(                    color: Color(0xffA91D3A),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(

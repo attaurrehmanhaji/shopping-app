@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Shopping App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -66,6 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
   ];
   @override
   Widget build(BuildContext context) {
+    double widthOfScreen = MediaQuery.of(context).size.width;
+    double hightOfScreen = MediaQuery.of(context).size.height;
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -99,8 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 2,
-          mainAxisSpacing: 3,
+          // crossAxisSpacing: 2,
           childAspectRatio: 0.6,
         ),
         itemCount: images.length,
@@ -112,91 +114,95 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(
                   height: 20,
                 ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        width: 1,
-                        color: const Color(0xffA91D3A),
+                Container(
+                  height: hightOfScreen * .5,
+                  // width: widthOfScreen * .1,
+                  child: Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 1,
+                          color: const Color(0xffA91D3A),
+                        ),
                       ),
-                    ),
 
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 8),
-                            child: Container(
-                              height: 35,
-                              width: 35,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 3,
-                                    offset: const Offset(0, 3),
-                                  ),
-                                ],
-                                borderRadius: BorderRadius.circular(50),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8, vertical: 8),
+                              child: Container(
+                                height: 35,
+                                width: 35,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 2,
+                                      blurRadius: 3,
+                                      offset: const Offset(0, 3),
+                                    ),
+                                  ],
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: myFavIcon(),
                               ),
-                              child: myFavIcon(),
                             ),
                           ),
-                        ),
-                        Expanded(
-                          child: Image.asset(
-                            // 'assets/tshirt.jpeg',
-                            images[index],
-                            // height: 200,
-                            // width: 200,
-                            // fit: BoxFit.cover,
+                          Expanded(
+                            child: Image.asset(
+                              // 'assets/tshirt.jpeg',
+                              images[index],
+                              height: hightOfScreen * .1,
+                              width: widthOfScreen * .2,
+                              // fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    // "T-Shirt",
-                                    names[index],
-                                    style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      // "T-Shirt",
+                                      names[index],
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 8),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    price[index],
-                                    style: TextStyle(
-                                      color: Color(0xffA91D3A),
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      price[index],
+                                      style: TextStyle(
+                                        color: Color(0xffA91D3A),
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(width: 4),
-                                ],
-                              ),
-                            ],
+                                    SizedBox(width: 4),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
 
-                    // child:
-                    //     myFavIcon(images: images, names: names, price: price),
+                      // child:
+                      //     myFavIcon(images: images, names: names, price: price),
+                    ),
                   ),
                 ),
                 SizedBox(height: 8),
@@ -205,7 +211,11 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CartPage()),
+                            builder: (context) => CartPage(
+                                  image: images[index],
+                                  name: names[index],
+                                  price: price[index],
+                                )),
                       );
                     },
                     child: Container(
@@ -260,7 +270,7 @@ class _myFavIconState extends State<myFavIcon> {
         child: Icon(
           Icons.favorite,
           // color: isFav ? Color(0xffA91D3A) : Color.fromARGB(133, 240, 239, 239),
-          color: isFav ? Colors.pink : Colors.grey,
+          color: isFav ? Color(0xffA91D3A) : Colors.grey,
         ));
   }
 }
